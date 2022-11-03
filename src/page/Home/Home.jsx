@@ -1,7 +1,7 @@
 import { fetchFilmsHomepage } from '../../API';
 import { useState, useEffect } from 'react';
 import { Wrap, Titile, NavItem } from './Home.styled';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/Loader';
 
