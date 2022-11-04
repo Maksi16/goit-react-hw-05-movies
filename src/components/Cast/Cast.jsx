@@ -37,7 +37,7 @@ const Cast = () => {
       {cast.length !== 0 ? (
         <List>
           {cast.map(({ id, name, profile_path, character }) => (
-            <Item rey={id}>
+            <Item key={id}>
               {profile_path ? (
                 <Img src={`${filmPosterUrl}${profile_path}`} alt={name} />
               ) : (

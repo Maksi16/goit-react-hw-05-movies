@@ -12,6 +12,7 @@ import {
   WrapImg,
   LinkBack,
   NavItem,
+  Box,
 } from './MoviesDetails.styled';
 
 export const MovieDetails = () => {
@@ -77,7 +78,7 @@ export const MovieDetails = () => {
           </>
         )}
       </Wrap>
-      <div>
+      <Box>
         <SubTitile>Additional Information</SubTitile>
         <ul>
           <li>
@@ -97,7 +98,7 @@ export const MovieDetails = () => {
             </NavItem>
           </li>
         </ul>
-      </div>
+      </Box>
       <Outlet />
     </>
   );

@@ -46,3 +46,7 @@ export const LinkBack = styled(Link)`
 export const NavItem = styled(NavLink)`
   font-size: 18px;
 `;
+export const Box = styled.div`
+  border-bottom: 2px solid rgba(34, 60, 80, 0.2);
+  margin-bottom: 8px;
+`;
