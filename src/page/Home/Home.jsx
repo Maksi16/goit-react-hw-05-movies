@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/Loader';
 
 export const Home = () => {
-  console.log(fetchFilmsHomepage());
+  // console.log(fetchFilmsHomepage());
+
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
@@ -16,7 +17,7 @@ export const Home = () => {
     fetchFilmsHomepage()
       .then(data => {
         const { results, total_results } = data.data;
-        console.log(results);
+        // console.log(results);
         setFilms(results);
         if (total_results === 0) {
           toast.warn('Oops, we did not find anything for your request!');
