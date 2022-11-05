@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/Loader';
 
-export const Home = () => {
+const Home = () => {
   // console.log(fetchFilmsHomepage());
 
   const [films, setFilms] = useState([]);
@@ -38,9 +38,8 @@ export const Home = () => {
       {isLoading && <Loader />}
       <ul>
         {films.map(({ id, original_title, name }) => (
-          <li>
+          <li key={id}>
             <NavItem
-              key={id}
               to={`movies/${id}`}
               state={{
                 from: location,
@@ -55,3 +54,4 @@ export const Home = () => {
     </Wrap>
   );
 };
+export default Home;
