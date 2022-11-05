@@ -79,18 +79,15 @@ const Movies = () => {
           {isLoading && <Loader />}
           {films.length !== 0 && (
             <ul>
-              {films.map(({ id, original_title, name }) => (
+              {films.map(({ id, title }) => (
                 <li key={id}>
                   <Link
-                    to={`${id}`}
+                    to={`/movies/${id}`}
                     state={{
                       from: location,
                     }}
                   >
-                    <p>
-                      {original_title}
-                      {name}
-                    </p>
+                    <p>{title}</p>
                   </Link>
                 </li>
               ))}
