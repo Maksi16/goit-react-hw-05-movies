@@ -44,7 +44,7 @@ const MovieDetails = () => {
   }
   const { poster_path, original_title, release_date, overview } = film;
   const procent = Math.round(Number(film.vote_average) * 10);
-  console.log(location);
+
   return (
     <>
       <LinkBack to={backLinkHref}>Go Back</LinkBack>

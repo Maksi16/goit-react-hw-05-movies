@@ -9,9 +9,26 @@ export const Wrap = styled.div`
 `;
 
 export const Titile = styled.h1`
-  font-size: 24px;
+  font-size: 26px;
+  text-align: center;
+  border-bottom: 2px solid rgba(34, 60, 80, 0.2);
 `;
 
 export const NavItem = styled(Link)`
   font-size: 18px;
+`;
+export const Img = styled.img`
+  width: 100%;
+`;
+export const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -16px;
+  margin-top: -16px;
+`;
+export const Item = styled.li`
+  list-style: none;
+  margin-left: 16px;
+  margin-top: 16px;
+  flex-basis: calc(100% / 5 - 16px);
 `;

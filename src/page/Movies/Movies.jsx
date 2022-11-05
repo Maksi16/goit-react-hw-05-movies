@@ -11,6 +11,7 @@ import {
 import { AiOutlineSearch } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/Loader';
+import { List, Img, Item, Form, Input, Button } from './Movies.styled';
 
 const Movies = () => {
   const [text, setText] = useState('');
@@ -20,12 +21,14 @@ const Movies = () => {
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const filmPosterUrl = `https://image.tmdb.org/t/p/w500`;
+  const noImages = `https://banffventureforum.com/wp-content/uploads/2019/08/No-Image.png`;
 
   const handleChenge = e => {
     setText(e.currentTarget.value.toLowerCase());
     setSearchParams('');
   };
-  console.log(searchParams);
+
   const handleSubmit = e => {
     e.preventDefault();
     if (text.trim() === '') {
@@ -37,9 +40,13 @@ const Movies = () => {
     setQuery(e.target.name.value.toLowerCase());
     setSearchParams({ query: e.target.name.value.toLowerCase() });
   };
+
   useEffect(() => {
-    setFilms([]);
-  }, [text]);
+    if (searchParams?.get('query')) {
+      setQuery(searchParams.get('query'));
+    }
+  }, [searchParams]);
+
   useEffect(() => {
     if (query === '') {
       return;
@@ -63,8 +70,8 @@ const Movies = () => {
     <div>
       {!movieId && (
         <>
-          <form onSubmit={handleSubmit}>
-            <input
+          <Form onSubmit={handleSubmit}>
+            <Input
               name="name"
               type="text"
               value={text}
@@ -72,26 +79,32 @@ const Movies = () => {
               placeholder="Search films"
               onChange={handleChenge}
             />
-            <button type="submit">
-              <AiOutlineSearch></AiOutlineSearch>
-            </button>
-          </form>
+            <Button type="submit">
+              <AiOutlineSearch size={20}></AiOutlineSearch>
+            </Button>
+          </Form>
           {isLoading && <Loader />}
           {films.length !== 0 && (
-            <ul>
-              {films.map(({ id, title }) => (
-                <li key={id}>
+            <List>
+              {films.map(({ id, title, poster_path }) => (
+                <Item key={id}>
                   <Link
                     to={`/movies/${id}`}
                     state={{
                       from: location,
                     }}
                   >
+                    {poster_path ? (
+                      <Img src={`${filmPosterUrl}${poster_path}`} alt={title} />
+                    ) : (
+                      <Img src={`${noImages}`} alt={title} />
+                    )}
+
                     <p>{title}</p>
                   </Link>
-                </li>
+                </Item>
               ))}
-            </ul>
+            </List>
           )}
         </>
       )}

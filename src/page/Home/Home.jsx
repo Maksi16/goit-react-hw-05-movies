@@ -1,6 +1,6 @@
 import { fetchFilmsHomepage } from '../../API';
 import { useState, useEffect } from 'react';
-import { Wrap, Titile, NavItem } from './Home.styled';
+import { Wrap, Titile, NavItem, Img, Item, List } from './Home.styled';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/Loader';
@@ -11,6 +11,8 @@ const Home = () => {
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const filmPosterUrl = `https://image.tmdb.org/t/p/w500`;
+  const noImages = `https://banffventureforum.com/wp-content/uploads/2019/08/No-Image.png`;
 
   useEffect(() => {
     setIsLoading(true);
@@ -36,21 +38,26 @@ const Home = () => {
     <Wrap>
       <Titile>Trending today</Titile>
       {isLoading && <Loader />}
-      <ul>
-        {films.map(({ id, original_title, name }) => (
-          <li key={id}>
+      <List>
+        {films.map(({ id, original_title, title, poster_path }) => (
+          <Item key={id}>
             <NavItem
               to={`movies/${id}`}
               state={{
                 from: location,
               }}
             >
+              {poster_path ? (
+                <Img src={`${filmPosterUrl}${poster_path}`} alt={title} />
+              ) : (
+                <Img src={`${noImages}`} alt={title} />
+              )}
               {original_title}
-              {name}
+              {/* {name} */}
             </NavItem>
-          </li>
+          </Item>
         ))}
-      </ul>
+      </List>
     </Wrap>
   );
 };
