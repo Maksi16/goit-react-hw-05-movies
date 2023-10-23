@@ -40,7 +40,7 @@ const Movies = () => {
     setQuery(e.target.name.value.toLowerCase());
     setSearchParams({ query: e.target.name.value.toLowerCase() });
   };
-
+  console.log(searchParams);
   useEffect(() => {
     if (searchParams?.get('query')) {
       setQuery(searchParams.get('query'));
